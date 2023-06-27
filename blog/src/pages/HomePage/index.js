@@ -1,14 +1,12 @@
 import React from "react";
 import { Fragment } from "react";
+import Navbar from "../../components/navbar";
 import styles from './homepage.module.css';
 
 function HomePage() {
     return (
         <Fragment>
-            <div className={styles.topbar}>
-                <h1>Blog</h1>
-                <a href="/login">Login</a>
-            </div>
+            <Navbar />
             <ul className={styles.postlist}>
                 <li><a href="/detail">Title</a></li>
                 <li><a href="/detail">Title</a></li>
