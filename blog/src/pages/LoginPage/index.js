@@ -1,14 +1,12 @@
 import React from "react";
 import { Fragment } from "react";
+import Navbar from "../../components/navbar";
 import styles from './loginpage.module.css';
 
 function LoginPage() {
     return (
         <Fragment>
-            <div className={styles.topbar}>
-                <h1>Blog</h1>
-                <a href="/">Home</a>
-            </div>
+            <Navbar />
             <div className={styles.login}>
                 <h2>Login</h2>
                 <form>

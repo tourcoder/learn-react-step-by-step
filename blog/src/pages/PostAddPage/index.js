@@ -1,16 +1,12 @@
 import React from "react";
 import { Fragment } from "react";
+import Menubar from "../../components/menubar";
 import styles from './postaddpage.module.css';
 
 function PostAddPage() {
     return (
         <Fragment>
-            <div className={styles.topbar}>
-                <h1>Blog</h1>
-                <a href="/posts">Posts</a>
-                <a href="/post_add">Add</a>
-                <a href="/logout">Logout</a>
-            </div>
+            <Menubar />
             <div className={styles.postadd}>
                 <h2>Add Post</h2>
                 <form>

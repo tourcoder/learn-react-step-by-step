@@ -1,17 +1,13 @@
 import React from "react";
 import { Fragment } from "react";
+import Menubar from "../../components/menubar";
 import PostComments from "../PostComment";
 import styles from './posteditpage.module.css';
 
 function PostEditPage() {
     return (
         <Fragment>
-            <div className={styles.topbar}>
-                <h1>Blog</h1>
-                <a href="/posts">Posts</a>
-                <a href="/post_add">Add</a>
-                <a href="/logout">Logout</a>
-            </div>
+            <Menubar />
             <div className={styles.postedit}>
                 <h2>Edit Post</h2>
                 <form>
