@@ -1,0 +1,9 @@
+.commentlist {
+    margin: 60px auto 10px;
+    width: 960px;
+}
+.commentlist ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+}

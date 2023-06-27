@@ -1,26 +1,24 @@
 import React from "react";
 import { Fragment } from "react";
+import styles from './commentlist.module.css';
 
-function PostComments () {
+function CommentList() {
     return (
         <Fragment>
-            <div className="comment-list">
+            <div className={styles.commentlist}>
                 <h2>Comments</h2>
                 <ul>
                     <li>
                         <h3>Name</h3>
                         <p>Comment</p>
-                        <p>Delete</p>
                     </li>
                     <li>
                         <h3>Name</h3>
                         <p>Comment</p>
-                        <p>Delete</p>
                     </li>
                     <li>
                         <h3>Name</h3>
                         <p>Comment</p>
-                        <p>Delete</p>
                     </li>
                 </ul>
             </div>
@@ -28,4 +26,4 @@ function PostComments () {
     );
 }
 
-export default PostComments;
+export default CommentList;
