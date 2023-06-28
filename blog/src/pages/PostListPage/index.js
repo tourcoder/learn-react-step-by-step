@@ -1,18 +1,25 @@
-import React from "react";
-import { Fragment, useState, useEffect } from "react";
-import axios from "axios";
+import React, { Fragment, useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import Menubar from "../../components/menubar";
 import styles from './postlistpage.module.css';
+import { db  } from "../../firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 function PostListPage() {
     const [posts, setPosts] = useState([]);
         
     useEffect(() => {
-        axios.get('/api/posts')
-        .then(response => {
-            setPosts(response.data.data.array);
-        })
+        fetchPosts();
     }, []);
+
+    const fetchPosts = async () => {
+        const querySnapshot = await getDocs(collection(db, "posts"));
+        const posts = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+        setPosts(posts);
+    };
 
     return (
         <Fragment>
@@ -20,7 +27,7 @@ function PostListPage() {
             <ul className={styles.postlist}>
                 {posts.map(post => (
                     <li key={post.id}>
-                        <a href="/post_edit">{post.title}</a>
+                        <Link to={`/post_edit/${post.id}`}>{post.title}</Link>
                     </li>
                 ))}
             </ul>
