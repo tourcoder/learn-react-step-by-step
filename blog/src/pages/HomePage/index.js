@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Fragment } from "react";
+import React, { useEffect, useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from "../../components/navbar";
 import styles from './homepage.module.css';
+import { db } from "../../firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 function HomePage() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        axios.get('/api/posts')
-        .then(response => {
-            setPosts(response.data.data.array);
-        })
+        fetchPosts();
     }, []);
+
+    const fetchPosts = async () => {
+        const querySnapshot = await getDocs(collection(db, "posts"));
+        const posts = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+        setPosts(posts);
+    };
 
     return (
         <Fragment>
@@ -20,7 +27,7 @@ function HomePage() {
             <ul className={styles.postlist}>
                 {posts.map(post => (
                     <li key={post.id}>
-                        <a href="/detail">{post.title}</a>
+                        <Link to={`/detail/${post.id}`}>{post.title}</Link>
                     </li>
                 ))}
             </ul>
