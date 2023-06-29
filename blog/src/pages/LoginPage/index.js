@@ -4,8 +4,11 @@ import Navbar from "../../components/navbar";
 import styles from './loginpage.module.css';
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
+import { useAuth } from "../../components/AuthContext";
 
 function LoginPage() {
+    const { setToken } = useAuth();
+
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -23,6 +26,7 @@ function LoginPage() {
             const data = doc.data();
             if (data.password === password) {
                 navigate("/posts");
+                setToken(username);
                 return;
             }
             alert("Incorrect password");

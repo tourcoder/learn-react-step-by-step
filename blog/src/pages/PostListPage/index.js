@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import useAuthRoute from "../../components/useAuthRoute";
 import { Link } from 'react-router-dom';
 import Menubar from "../../components/menubar";
 import styles from './postlistpage.module.css';
@@ -6,6 +7,8 @@ import { db  } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 function PostListPage() {
+    useAuthRoute();
+    
     const [posts, setPosts] = useState([]);
         
     useEffect(() => {

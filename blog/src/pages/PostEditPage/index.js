@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import useAuthRoute from "../../components/useAuthRoute";
 import { useParams } from "react-router-dom";
 import Menubar from "../../components/menubar";
 import PostComments from "../PostComment";
@@ -7,6 +8,8 @@ import { db } from "../../firebase";
 import { getDoc, updateDoc, doc } from "firebase/firestore";
 
 function PostEditPage() {
+    useAuthRoute();
+    
     const { id } = useParams();
     const [title, setTitle] = useState(''); 
     const [content, setContent] = useState('');

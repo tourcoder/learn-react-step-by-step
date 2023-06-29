@@ -3,8 +3,11 @@ import Menubar from "../../components/menubar";
 import styles from './postaddpage.module.css';
 import { db } from "../../firebase";
 import { addDoc, collection } from 'firebase/firestore';
+import useAuthRoute from "../../components/useAuthRoute";
 
 function PostAddPage() {
+    useAuthRoute();    
+
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
