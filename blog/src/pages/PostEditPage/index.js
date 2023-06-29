@@ -48,7 +48,7 @@ function PostEditPage() {
                     <div className={styles.form}><button type="submit">Update</button></div>
                 </form>
             </div>
-            <PostComments />
+            <PostComments postId={id} />
         </Fragment>
     );
 }

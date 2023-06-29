@@ -4,7 +4,7 @@ import CommentList from "../CommentList";
 import CommentAdd from "../CommentAdd";
 import styles from './detailpage.module.css';
 import { useParams } from "react-router-dom";
-import { collection, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 function DetailPage() {
@@ -36,8 +36,8 @@ function DetailPage() {
                 <h2>{title}</h2>
                 <p>{content}</p>
             </div>
-            <CommentAdd />
-            <CommentList />
+            <CommentAdd postId={id} />
+            <CommentList postId={id} />
         </Fragment>
     );
 }
