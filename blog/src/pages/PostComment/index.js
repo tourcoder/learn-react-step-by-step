@@ -1,16 +1,34 @@
-import React from "react";
-import axios from "axios";
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import styles from './postcomment.module.css';
+import { useParams } from "react-router-dom";
+import { db } from "../../firebase";
+import { collection, query, where, getDocs, doc, deleteDoc } from "firebase/firestore";
 
 function PostComments () {
+    const { id } = useParams();
     const [comments, setComments] = useState([]);
+
     useEffect(() => {
-        axios.get('/api/comments')
-        .then(response => {
-            setComments(response.data.data.array);
-        })
+        fetchComments();    
     }, []);
+
+    const fetchComments = async () => {
+        const q = query(collection(db, "comments"), where("postid", "==", id));
+        const querySnapshot = await getDocs(q);
+        const comments = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+        setComments(comments);
+    };
+
+    const deleteComment = async (commentId) => {
+        if (window.confirm('Delete this comment?')) {
+            await deleteDoc(doc(db, "comments", commentId));
+            alert('Comment deleted successfully');
+            fetchComments();
+        }
+    };
 
     return (
         <Fragment>
@@ -21,7 +39,7 @@ function PostComments () {
                         <li key={comment.id}>
                             <h3>{comment.author}</h3>
                             <p>{comment.content}</p>
-                            <a href="/detail">Delete</a>
+                            <button onClick={() => deleteComment(comment.id)}>Delete</button>
                         </li>
                     ))}
                 </ul>
