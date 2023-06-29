@@ -14,7 +14,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/detail" element={<DetailPage />} />
+          <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/posts" element={<PostListPage />} />
           <Route path="/post_add" element={<PostAddPage />} />

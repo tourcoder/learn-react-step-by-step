@@ -12,21 +12,21 @@ function PostEditPage() {
     const [content, setContent] = useState('');
 
     useEffect(() => {
-        const fetchPost = async () => {
-            const docRef = doc(db, "posts", id);
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                setTitle(data.title);
-                setContent(data.content);
-            } else {
-                alert("No such document!");
-            }
-        };
-
         fetchPost();
     }, [id]);
+
+    const fetchPost = async () => {
+        const docRef = doc(db, "posts", id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            setTitle(data.title);
+            setContent(data.content);
+        } else {
+            alert("No such document!");
+        }
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
