@@ -1,10 +1,14 @@
 import React, { Fragment, useEffect, useState } from "react";
+import useAuthRoute from "../../components/useAuthRoute";
 import styles from './postcomment.module.css';
 import { useParams } from "react-router-dom";
 import { db } from "../../firebase";
 import { collection, query, where, getDocs, doc, deleteDoc } from "firebase/firestore";
 
+
 function PostComments () {
+    useAuthRoute();
+    
     const { id } = useParams();
     const [comments, setComments] = useState([]);
 

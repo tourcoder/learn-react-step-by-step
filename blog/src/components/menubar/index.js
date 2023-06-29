@@ -1,15 +1,23 @@
-import React from "react";
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import styles from './menubar.module.css';
+import { Link } from 'react-router-dom';
+import { useAuth } from "../../components/AuthContext";
 
 function Menubar () {
+    const { setToken } = useAuth();
+    
+    const handleLogout = (event) => {
+        event.preventDefault();
+        setToken(null);
+    };
+
     return (
         <Fragment>
             <div className={styles.topbar}>
                 <h1>Blog</h1>
-                <a href="/posts">Posts</a>
-                <a href="/post_add">Add</a>
-                <a href="/logout">Logout</a>
+                <Link to="/posts">Posts</Link>
+                <Link to="/post_add">Add</Link>
+                <Link to="#" onClick={handleLogout}>Logout</Link>
             </div>
         </Fragment>
     );
